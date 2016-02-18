@@ -1,6 +1,14 @@
 body{
   margin:0;
 }
+body.white{
+  color:black;
+  background-color: white;
+}
+body.black{
+  color:white;
+  background-color: black;
+}
 h1 {
   border-bottom:1px solid red;
   padding:20px;

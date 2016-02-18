@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="style.css">
 	</head>
-	<body>
+	<body id="target" class="white">
 		<h1><a href="index.php">작심5일</a></h1>
 		<ol>
 			<li><a href="index.php?id=1">HTML</a></li>
@@ -13,6 +13,9 @@
 			<li><a href="index.php?id=3">JavaScript</a></li>
 		</ol>
 		<div id="article">
+			<input type="button" value="white" onclick="document.getElementById('target').className='white'">
+			<input type="button" value="black" onclick="document.getElementById('target').className='black'">
+			<input type="text">
 			<?php
 			if(empty($_GET['id'])) {
 				print("<h2>Welcome!!!!</h2>");
