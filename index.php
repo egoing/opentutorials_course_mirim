@@ -1,3 +1,6 @@
+<?php
+$conn = mysqli_connect('localhost', 'root', '111111', 'opentutorials');
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -8,9 +11,13 @@
 	<body id="target" class="white">
 		<h1><a href="index.php">작심5일</a></h1>
 		<ol>
-			<li><a href="index.php?id=1">HTML</a></li>
-			<li><a href="index.php?id=2">CSS</a></li>
-			<li><a href="index.php?id=3">JavaScript</a></li>
+			<?php
+			$sql = "SELECT id, title FROM topic";
+			$result = mysqli_query($conn, $sql);
+			while($row = mysqli_fetch_assoc($result)){
+				print("<li><a href=\"index.php?id={$row['id']}\">{$row['title']}</a></li>");
+			}
+			?>
 		</ol>
 		<div id="article">
 			<input type="button" value="white" onclick="document.getElementById('target').className='white'">
@@ -19,11 +26,20 @@
 			if(empty($_GET['id'])) {
 				print("<h2>Welcome!!!!</h2>");
 			} else {
-				$id = $_GET['id'];
-	      $data = file_get_contents("{$id}.txt");
-				print($data);
+					$sql = "SELECT * FROM topic WHERE id={$_GET['id']}";
+					$result = mysqli_query($conn, $sql);
+					$row = mysqli_fetch_assoc($result);
+					print("<h2>{$row['title']}</h2>");
+					print($row['description']);
+
+				// $id = $_GET['id'];
+	      // $data = file_get_contents("{$id}.txt");
+				// print($data);
 			}
       ?>
 		</div>
 </body>
+
+
+
 </html>
